@@ -1,9 +1,15 @@
-import PostCard from "../PostCard/PostCard";
+import { Helmet } from "react-helmet-async";
+import Banner from "../Banner/Banner";
+// import PostCard from "../PostCard/PostCard";
 
 const Home = () => {
   return (
     <div className="mt-10">
-      <PostCard></PostCard>
+      <Helmet>
+        <title>Forum Verse - Home</title>
+      </Helmet>
+      <Banner></Banner>
+      {/* <PostCard></PostCard> */}
     </div>
   );
 };

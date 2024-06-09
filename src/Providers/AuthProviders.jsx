@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -39,15 +40,11 @@ const AuthProviders = ({ children }) => {
     })
   };
 
-  // update user profile
+//  email password signin
 
-  // const updateUserProfile = (name, photoURL) => {
-  //   setLoading(true);
-  //   return updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photoURL,
-  //   });
-  // };
+  const emailPaswordSignin =(email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
 
   // signout
   const signOutUser = () => {
@@ -72,7 +69,7 @@ const AuthProviders = ({ children }) => {
     googleSignIn,
     emailPasswordSignup,
     setLoading,
-    setUser,
+    emailPaswordSignin
   };
 
   return (

@@ -5,10 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-  console.log(user)
-  // console.log(user.displayName)
-  // if (user.photoURL) {
-  //   setLoading(true)
+  // console.log(user)
   // }
 
   const handleSignOut = () =>{
@@ -58,7 +55,7 @@ const Navbar = () => {
       <div className="navbar-end gap-4">
         {!user ? (
           <div>
-            <NavLink to="/signUp">Join Us</NavLink>
+            <NavLink to="/signIn">Join Us</NavLink>
           </div>
         ) : (
           <div className="dropdown dropdown-end">

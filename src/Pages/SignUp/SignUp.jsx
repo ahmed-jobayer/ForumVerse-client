@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -52,12 +53,13 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   // email pass signup
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     emailPasswordSignup(data.email, data.password,data.name, data.imageURL)
     .then ((data) => {
       console.log(data)
@@ -78,6 +80,7 @@ const SignUp = () => {
             timer: 1500,
           });
         }
+        reset()
         navigate('/')
       });
     })
@@ -85,6 +88,10 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Helmet>
+        <title>Forum Verse - Sign Up</title>
+      </Helmet>
     <div className="min-h-screen flex items-center p-2">
       <div className="max-w-md  bg-base-100 rounded-2xl p-6 border border-white shadow-lg mx-auto mt-5">
         <div className="text-center font-extrabold text-2xl text-[#1089D3]">
@@ -160,6 +167,7 @@ const SignUp = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 
