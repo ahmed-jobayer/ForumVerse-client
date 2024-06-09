@@ -1,18 +1,59 @@
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-
+  const axiosPublic = useAxiosPublic();
   const { googleSignIn } = useAuth();
+  const navigate = useNavigate()
 
-  const handleGoogleSignIn = () =>{
+  const handleGoogleSignIn = () => {
     googleSignIn()
-  }
+      .then((data) => {
+        const userInfo = {
+          name: data.user.displayName,
+          email: data.user.email,
+          imageURL: data.user.photoURL,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          // console.log(res.data.insertedId);
+          // console.log(res.data.message);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Successfully loged in",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          if (res.data.message) {
+            // const mess = res.data.message
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: 'Welcome back',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          navigate('/')
+        });
+        // console.log(userInfo, data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const {
-    register, handleSubmit, formState: { errors },} = useForm();
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -57,15 +98,18 @@ const SignUp = () => {
           <input
             className="block w-full font-bold bg-gradient-to-r from-[#1089D3] to-[#12B1D1] text-white py-3 mt-5 rounded-xl shadow-lg transition-transform transform hover:scale-105 active:scale-95"
             type="submit"
-            value="Sign In"
+            value="Sign Up"
           />
         </form>
         <div className="mt-6">
           <span className="block text-center text-xs text-gray-400">
-            Or Sign in with
+            Or continue with
           </span>
           <div className="flex justify-center gap-4 mt-4">
-            <button onClick={handleGoogleSignIn} className="w-full bg-gradient-to-r from-black to-gray-700 border-4 border-white p-1 rounded-full h-12 grid place-content-center shadow-lg transition-transform transform hover:scale-110 active:scale-90">
+            <button
+              onClick={handleGoogleSignIn}
+              className="w-3/4 bg-gradient-to-r from-black to-gray-700 border-2 border-white p-1 rounded-full h-12 grid place-content-center shadow-lg transition-transform transform hover:scale-110 active:scale-90"
+            >
               <FaGoogle></FaGoogle>
             </button>
           </div>

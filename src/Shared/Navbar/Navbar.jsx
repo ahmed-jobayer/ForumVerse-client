@@ -44,7 +44,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-4">
         <div>
-          <Link to="/signUp">Join Us</Link>
+          <NavLink to="/signUp">Join Us</NavLink>
         </div>
         <div className="dropdown dropdown-end">
           <div
