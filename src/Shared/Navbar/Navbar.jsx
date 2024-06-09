@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
 import { RiMenu2Fill } from "react-icons/ri";
 
-
 const Navbar = () => {
   const links = (
     <>
@@ -20,8 +19,7 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-          <RiMenu2Fill />
-
+            <RiMenu2Fill />
           </div>
           <ul
             tabIndex={0}
@@ -46,7 +44,35 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-4">
         <div>
-          <Link to='/signUp'>Join Us</Link>
+          <Link to="/signUp">Join Us</Link>
+        </div>
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src=""
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li className="p-2">
+              user name
+            </li>
+            <li>
+              <Link to='/dashboard/myProfile'>Dashboard</Link>
+            </li>
+            <li>
+              <Link>Sign Out</Link>
+            </li>
+          </ul>
         </div>
         <div className="indicator">
           <IoNotificationsCircleSharp className="text-2xl" />
