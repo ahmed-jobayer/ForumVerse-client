@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
-  const { googleSignIn } = useAuth();
+  const { googleSignIn, emailPasswordSignup } = useAuth();
   const navigate = useNavigate()
 
   const handleGoogleSignIn = () => {
@@ -25,7 +25,7 @@ const SignUp = () => {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Successfully loged in",
+              title: "Successfully Registered",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -54,8 +54,34 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // email pass signup
   const onSubmit = (data) => {
     console.log(data);
+    emailPasswordSignup(data.email, data.password,data.name, data.imageURL)
+    .then ((data) => {
+      console.log(data)
+      const userInfo = {
+        name: data.user.displayName,
+        email: data.user.email,
+        imageURL: data.user.photoURL,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        // console.log(res.data.insertedId);
+        // console.log(res.data.message);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successfully Registered",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        navigate('/')
+      });
+    })
+    .catch (err => console.log(err))
   };
 
   return (
@@ -73,6 +99,16 @@ const SignUp = () => {
             placeholder="Your Name"
           />
           {errors.name && (
+            <span className="text-red-400">This field is required</span>
+          )}
+          <input
+            {...register("imageURL", { required: true })}
+            className="w-full bg-white border-none py-3 px-5 rounded-xl mt-4 shadow-inner border-2 border-transparent focus:outline-none focus:border-[#12B1D1] placeholder-gray-400"
+            type="imageURL"
+            name="imageURL"
+            placeholder="Your Image URL"
+          />
+          {errors.imageURL && (
             <span className="text-red-400">This field is required</span>
           )}
           <input

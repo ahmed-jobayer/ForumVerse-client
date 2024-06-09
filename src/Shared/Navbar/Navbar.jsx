@@ -1,8 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
 import { RiMenu2Fill } from "react-icons/ri";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, signOutUser } = useAuth();
+  console.log(user)
+  // console.log(user.displayName)
+  // if (user.photoURL) {
+  //   setLoading(true)
+  // }
+
+  const handleSignOut = () =>{
+    signOutUser()
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
   const links = (
     <>
       <li>
@@ -43,37 +56,35 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 gap-2">{links}</ul>
       </div>
       <div className="navbar-end gap-4">
-        <div>
-          <NavLink to="/signUp">Join Us</NavLink>
-        </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src=""
-              />
-            </div>
+        {!user ? (
+          <div>
+            <NavLink to="/signUp">Join Us</NavLink>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li className="p-2">
-              user name
-            </li>
-            <li>
-              <Link to='/dashboard/myProfile'>Dashboard</Link>
-            </li>
-            <li>
-              <Link>Sign Out</Link>
-            </li>
-          </ul>
-        </div>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt={user.displayName} src={user.photoURL} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li className="p-2">{user.displayName}</li>
+              <li>
+                <Link to="/dashboard/myProfile">Dashboard</Link>
+              </li>
+              <li>
+                <Link onClick={handleSignOut}>Sign Out</Link>
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="indicator">
           <IoNotificationsCircleSharp className="text-2xl" />
           <span className="badge badge-sm indicator-item">8</span>
