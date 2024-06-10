@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
+import Announcements from "../Announcements/Announcements";
 // import PostCard from "../PostCard/PostCard";
 
 const Home = () => {
@@ -9,7 +10,9 @@ const Home = () => {
         <title>Forum Verse - Home</title>
       </Helmet>
       <Banner></Banner>
+
       {/* <PostCard></PostCard> */}
+      <Announcements></Announcements>
     </div>
   );
 };

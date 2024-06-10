@@ -1,6 +1,5 @@
 import { FaSearch } from "react-icons/fa";
 import banner from "../../../../src/assets/banner.jpg";
-import banner2 from "../../../../src/assets/banner2.jpg";
 import Button from "../../../Shared/Button/Button";
 import { useState } from "react";
 

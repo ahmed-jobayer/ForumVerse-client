@@ -2,8 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
 import { RiMenu2Fill } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
+import useAnnouncements from "../../hooks/useAnnouncements";
 
 const Navbar = () => {
+  const [announcements ] = useAnnouncements()
   const { user, signOutUser } = useAuth();
   // console.log(user)
   // }
@@ -84,7 +86,7 @@ const Navbar = () => {
         )}
         <div className="indicator">
           <IoNotificationsCircleSharp className="text-2xl" />
-          <span className="badge badge-sm indicator-item">8</span>
+          <span className="badge badge-sm indicator-item">{announcements.length}</span>
         </div>
       </div>
     </div>
