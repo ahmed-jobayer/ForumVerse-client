@@ -9,7 +9,7 @@ const Announcements = () => {
 
     return (
         <div className="mt-2">
-            <h2 className="text-center text-3xl my-2">Announcements</h2>
+            <h2 className="text-center text-3xl my-4">Announcements</h2>
             <div>
             {
                 announcements.map((announcement) => <Announcement 
