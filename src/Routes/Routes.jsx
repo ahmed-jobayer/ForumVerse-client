@@ -5,6 +5,7 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../Pages/UserDashboard/MyProfile/MyProfile";
+import PostDetails from "../Pages/PostDetails/PostDetails";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ export const router = createBrowserRouter([
         path: "signUp",
         element: <SignUp></SignUp>,
       },
+      {
+        path:'posts/:id',
+        element:<PostDetails></PostDetails>,
+        loader:({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+      }
     ],
   },
   {

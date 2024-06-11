@@ -40,6 +40,7 @@ const Home = () => {
           <PostCard key={post._id} post={post}></PostCard>
         ))}
       </div>
+      
     </div>
   );
 };
