@@ -6,6 +6,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../Pages/UserDashboard/MyProfile/MyProfile";
 import PostDetails from "../Pages/PostDetails/PostDetails";
+import Membership from "../Pages/Membership/Membership";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
         path:'posts/:id',
         element:<PostDetails></PostDetails>,
         loader:({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+      },
+      {
+        path:'membership',
+        element: <Membership></Membership>
       }
     ],
   },
@@ -37,7 +43,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "myProfile",
-        element: <MyProfile></MyProfile>,
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
       },
     ],
   },

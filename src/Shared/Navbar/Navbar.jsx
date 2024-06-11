@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/">Membership</NavLink>
+        <NavLink to="/membership">Membership</NavLink>
       </li>
     </>
   );
@@ -76,7 +76,7 @@ const Navbar = () => {
             >
               <li className="p-2">{user.displayName}</li>
               <li>
-                <Link to="/dashboard/myProfile">Dashboard</Link>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
                 <Link onClick={handleSignOut}>Sign Out</Link>
