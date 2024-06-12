@@ -10,6 +10,7 @@ import Button from "../../Shared/Button/Button";
 const PostDetails = () => {
   const { user } = useAuth();
   const post = useLoaderData();
+  console.log(post)
   const axiosPublic = useAxiosPublic();
   const [voted, setVoted] = useState({ upvoted: false, downvoted: false });
   const [updatedCounts, setUpdatedCounts] = useState({
@@ -124,7 +125,8 @@ const PostDetails = () => {
           <div className="flex flex-col justify-start mt-2">
             <h4 className="">Tags</h4>
             <ul className="flex  gap-4">
-              {tags.map((tag, index) => (
+              
+              {tags?.length && tags?.map((tag, index) => (
                 <li key={index}>#{tag}</li>
               ))}
             </ul>

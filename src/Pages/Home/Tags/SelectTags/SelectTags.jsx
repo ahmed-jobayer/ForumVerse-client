@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import Select from "react-select";
 
 const options = [
@@ -24,19 +24,7 @@ const options = [
   { value: "design", label: "Design" },
 ];
 
-const SelectTags = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [message, setMessage] = useState("");
-
-  const handleChange = (selected) => {
-    if (selected.length <= 3) {
-      setSelectedOptions(selected);
-      setMessage(""); // Clear the message when valid selection is made
-    } else {
-      setMessage("You can only select up to 2 tags.");
-    }
-  };
-
+const SelectTags = ({ selectedOptions, handleChange, message }) => {
   return (
     <div>
       <Select

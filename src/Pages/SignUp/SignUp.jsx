@@ -51,7 +51,7 @@ const SignUp = () => {
       });
   };
 
-  const {
+  const { 
     register,
     handleSubmit,
     reset,

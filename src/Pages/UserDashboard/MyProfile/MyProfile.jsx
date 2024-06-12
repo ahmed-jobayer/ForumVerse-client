@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUsers from "../../../hooks/useUsers";
+import First3Post from "./First3Post";
 
 const MyProfile = () => {
   const axiosPublic = useAxiosPublic();
@@ -29,8 +30,10 @@ const MyProfile = () => {
   if (loading || postsLoading) {
     return authLoading;
   }
+  const first3Post = posts.slice(0, 3);
+ 
 
-  console.log(posts);
+  console.log(first3Post);
 
   return (
     <div>
@@ -54,7 +57,15 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      {posts?.length}
+      <h2 className="text-center text-3xl mt-4">Recent posts</h2>
+      <div className="grid md:grid-cols-2 gap-4 mt-10">
+        {
+            first3Post.map((post) => <First3Post
+            key={post._id}
+            post={post}
+            ></First3Post>)
+        }
+      </div>
     </div>
   );
 };
