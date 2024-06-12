@@ -8,6 +8,8 @@ import MyProfile from "../Pages/UserDashboard/MyProfile/MyProfile";
 import PostDetails from "../Pages/PostDetails/PostDetails";
 import Membership from "../Pages/Membership/Membership";
 import PrivateRoute from "./PrivateRoute";
+import AddPost from "../Pages/UserDashboard/AddPost/AddPost";
+import MyPosts from "../Pages/UserDashboard/MyPosts/MyPosts";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path: "myProfile",
         element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
+      },
+      {
+        path: "addPost",
+        element: <PrivateRoute><AddPost></AddPost></PrivateRoute>,
+      },
+      {
+        path: "myPosts",
+        element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
       },
     ],
   },

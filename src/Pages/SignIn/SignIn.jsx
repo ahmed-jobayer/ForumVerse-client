@@ -17,7 +17,7 @@ const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
 
   // google login
   const handleGoogleSignIn = () => {
@@ -27,6 +27,7 @@ const SignIn = () => {
           name: data.user.displayName,
           email: data.user.email,
           imageURL: data.user.photoURL,
+          badge: 'Bronze'
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           // console.log(res.data.insertedId);

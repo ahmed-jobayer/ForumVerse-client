@@ -17,11 +17,12 @@ const PostDetails = () => {
     downVoteCount: post.downVoteCount,
   });
   const [comment, setComment] = useState("");
-  const [commentCount, setCommentCount] = useState(post.comments.length);
+  const [commentCount, setCommentCount] = useState(post?.comments?.length);
+  console.log(post)
 
   useEffect(() => {
     setCommentCount(post.comments.length);
-  }, [post.comments.length]);
+  }, [post?.comments?.length]);
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
