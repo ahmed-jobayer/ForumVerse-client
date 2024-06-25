@@ -18,7 +18,8 @@ const SignUp = () => {
           name: data.user.displayName,
           email: data.user.email,
           imageURL: data.user.photoURL,
-          badge: 'Bronze'
+          badge: 'Bronze',
+          role: 'user'
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           // console.log(res.data.insertedId);
@@ -69,6 +70,7 @@ const SignUp = () => {
         email: data.user.email,
         imageURL: data.user.photoURL,
         badge: 'Bronze',
+        role: 'user'
       };
       axiosPublic.post("/users", userInfo).then((res) => {
         // console.log(res.data.insertedId);

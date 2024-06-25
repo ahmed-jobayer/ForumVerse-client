@@ -10,6 +10,7 @@ import Membership from "../Pages/Membership/Membership";
 import PrivateRoute from "./PrivateRoute";
 import AddPost from "../Pages/UserDashboard/AddPost/AddPost";
 import MyPosts from "../Pages/UserDashboard/MyPosts/MyPosts";
+import Error from "../Pages/Error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -31,11 +32,15 @@ export const router = createBrowserRouter([
       {
         path:'posts/:id',
         element:<PostDetails></PostDetails>,
-        loader:({params}) => fetch(`http://localhost:5000/postsDetails/${params.id}`)
+        loader:({params}) => fetch(`https://forum-verse-server.vercel.app/postsDetails/${params.id}`)
       },
       {
         path:'membership',
         element: <Membership></Membership>
+      },
+      {
+        path: '*',
+        element: <Error></Error>
       }
     ],
   },
@@ -55,6 +60,23 @@ export const router = createBrowserRouter([
         path: "myPosts",
         element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
       },
+      {
+        path: "myPosts",
+        element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
+      },
+      {
+        path: "myPosts",
+        element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
+      },
+      {
+        path: "myPosts",
+        element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
+      },
+      {
+        path: "myPosts",
+        element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>,
+      },
+      
     ],
   },
 ]);

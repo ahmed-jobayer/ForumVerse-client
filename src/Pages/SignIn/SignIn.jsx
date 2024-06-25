@@ -27,7 +27,8 @@ const SignIn = () => {
           name: data.user.displayName,
           email: data.user.email,
           imageURL: data.user.photoURL,
-          badge: 'Bronze'
+          badge: 'Bronze',
+          role: 'user'
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           // console.log(res.data.insertedId);
